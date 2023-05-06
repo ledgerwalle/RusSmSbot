@@ -1,0 +1,176 @@
+для сервера 
+apt install types
+apt install telebot
+apt install os
+apt install time
+apt install datetime
+apt install requests
+apt install configparser
+apt install random
+apt install sqlite3
+apt install apihelper
+
+apt install python3-pip
+для сервера
+
+
+
+Подготовка сервера
+После того как вы подключились к серверу, выполните команды которые обновят списки, и устаревшие пакеты до последней версии.
+
+sudo apt update
+sudo apt upgrade
+
+Библиотеки бота для коректной работы установить все.
+
+pip install requests==2.25.0
+pip install beautifulsoup4==4.9.3
+pip install lxml==4.6.2
+pip install randominfo==2.0.2
+pip install yattag==1.14.0
+pip install transliterate==1.10.2
+
+
+Загрузка и запуск бота
+Перейдите в каталог home и создайте папку для вашего проекта выполнив команды.
+y
+cd /NIKITA
+mkdir NIKITASmsbot
+cd NIKITASmsbot
+
+Загрузите файлы вашего проекта на сервер, в моем случаи это только один файл RusSmsbot.py.
+
+Как запустить Python Telegram бота на VPS 
+
+Установите зависимости вашего проекта, и запустите бота.
+
+Примечание: Ubuntu 20.04 поставляется с установленной Python 3.8 из коробки, если для вашего проекта нужна другая версия, установите ее или используйте другую версию дистрибутива.
+
+pip install pyTelegramBotAPI
+python3 msbot.py 
+Теперь перейдите в Телеграм и протестируйте работу.
+
+Авто запуск и перезапуск телеграм бота
+Создайте systemd службу для бота.
+
+sudo nano /lib/systemd/system/NIKITASmsbot.service
+С конфигурацией:
+[Unit]
+Description=Ramziv - Telegram Bot
+After=syslog.target
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/NIKITA/NIKITASmsbot/
+ExecStart=/usr/bin/python3 /NIKITA/NIKITASmsbot/msbot.py
+RestartSec=60
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
+Нажмите CTRL+S и CTRL+X что бы сохранить и выйти.
+
+Выполните эти две команды что бы запустить службу.
+
+sudo systemctl enable NIKITASmsbot
+sudo systemctl start NIKITASmsbot
+
+Ваш бот запушен. Перейдите в Телеграм и убедитесь в этом.
+
+Заключение
+Ваш бот будет всегда запускаться при старте системы, и перезапускается при возникновении ошибки. Для примера вы можете специально вызвать исключения в одной из функций обернутой обработчиком, и отследить ее в журнале командой:
+
+sudo journalctl -u NIKITASmsbot.service
+
+#Вывод
+#Jun 13 12:35:31 objmnuqxoa python3[1069]:   File "/NIKITASmsbot/NIKITASmsbot/NIKITASmsbot.py", line 7, in send_welcome
+#Jun 13 12:35:31 objmnuqxoa python3[1069]:     number = 1/0
+#Jun 13 12:35:31 objmnuqxoa python3[1069]: ZeroDivisionError: division by zero
+Комментарии
+
+
+перезагрузка сервера Для проверки запуска боталюбая из трех команд
+
+
+
+reboot now
+
+init 6
+
+
+
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+Подготовка сервера
+После того как вы подключились к серверу, выполните команды которые обновят списки, и устаревшие пакеты до последней версии.
+
+sudo apt update
+sudo apt upgrade
+Загрузка и запуск бота
+Перейдите в каталог home и создайте папку для вашего проекта выполнив команды.
+
+cd /home
+mkdir ramziv_bot
+cd ramziv_bot
+
+Загрузите файлы вашего проекта на сервер, в моем случаи это только один файл main.py.
+
+Как запустить Python Telegram бота на VPS 
+
+Установите зависимости вашего проекта, и запустите бота.
+
+Примечание: Ubuntu 20.04 поставляется с установленной Python 3.8 из коробки, если для вашего проекта нужна другая версия, установите ее или используйте другую версию дистрибутива.
+
+pip install pyTelegramBotAPI
+python3 main.py 
+Теперь перейдите в Телеграм и протестируйте работу.
+
+Авто запуск и перезапуск телеграм бота
+Создайте systemd службу для бота.
+
+sudo nano /lib/systemd/system/ramziv_bot.service
+С конфигурацией:
+[Unit]
+Description=Ramziv - Telegram Bot
+After=syslog.target
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ramziv_bot/
+ExecStart=/usr/bin/python3 /home/ramziv_bot/main.py
+RestartSec=60
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+Нажмите CTRL+S и CTRL+X что бы сохранить и выйти.
+Выполните эти две команды что бы запустить службу.
+
+sudo systemctl enable ramziv_bot
+sudo systemctl start ramziv_bot
+Ваш бот запушен. Перейдите в Телеграм и убедитесь в этом.
+
+Заключение
+Ваш бот будет всегда запускаться при старте системы, и перезапускается при возникновении ошибки. Для примера вы можете специально вызвать исключения в одной из функций обернутой обработчиком, и отследить ее в журнале командой:
+
+sudo journalctl -u ramziv_bot.service
+
+#Вывод
+#Jun 13 12:35:31 objmnuqxoa python3[1069]:   File "/home/ramziv_bot/main.py", line 7, in send_welcome
+#Jun 13 12:35:31 objmnuqxoa python3[1069]:     number = 1/0
+#Jun 13 12:35:31 objmnuqxoa python3[1069]: ZeroDivisionError: division by zero
+Комментарии
+
+
+перезагрузка сервера любая из трех команд
+shutdown -r now
+
+reboot now
+
+init 6
